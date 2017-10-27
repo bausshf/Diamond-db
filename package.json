@@ -1,0 +1,19 @@
+{
+	"name": "diamond-db",
+	"description": "High-performance ORM based on mysql-native compatible with Diamond's MVC Framework",
+	"authors": [
+		"Jacob Jensen"
+	],
+	"license": "The MIT License (MIT)",
+	"copyright": "Copyright © 2017 Jacob Jensen",
+	"targetType": "sourceLibrary",
+	"sourcePaths": ["src"],
+	"dependencies": {
+		"vibe-d": {
+			"version": "~>0.8.1"
+		},
+		"mysql-native": {
+			"version": "~>0.1.4"
+		}
+	}
+}
