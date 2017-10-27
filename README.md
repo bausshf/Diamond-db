@@ -41,7 +41,7 @@ import models;
 
 static const sql = "SELECT * FROM `@table`";
 
-auto models = MySql.readMany!MyModel(sql, null);
+auto modelsRead = MySql.readMany!MyModel(sql, null);
 ```
 
 ### Insert
@@ -67,9 +67,9 @@ model1.name = "Bob";
 auto model2 = new MyModel;
 model2.name = "Sally";
 
-auto models = [model1, model2];
+auto modelsToInsert = [model1, model2];
 
-models.insertMany();
+modelsToInsert.insertMany();
 ```
 
 ### Update
@@ -98,9 +98,9 @@ auto model2 = new MyModel;
 model2.id = 2;
 model2.name = "ThisIsNotSallyAnymore";
 
-auto models = [model1, model2];
+auto modelsToUpdate = [model1, model2];
 
-models.updateMany();
+modelsToUpdate.updateMany();
 ```
 
 ### Delete
@@ -126,7 +126,7 @@ model1.id = 1;
 auto model2 = new MyModel;
 model2.id = 2;
 
-auto models = [model1, model2];
+auto modelsToDelete = [model1, model2];
 
-models.deleteMany();
+modelsToDelete.deleteMany();
 ```
