@@ -52,7 +52,7 @@ import models;
 auto model = new MyModel;
 model.name = "Bob";
 
-model.insert();
+model.insertModel();
 ```
 
 ### Insert Many
@@ -69,7 +69,7 @@ model2.name = "Sally";
 
 auto models = [model1, model2];
 
-models.insert();
+models.insertModel();
 ```
 
 ### Update
@@ -81,7 +81,7 @@ auto model = new MyModel;
 model.id = 1;
 model.name = "ThisIsNotBobAnymore";
 
-model.update();
+model.updateModel();
 ```
 
 ### UpdateMany
@@ -100,7 +100,7 @@ model2.name = "ThisIsNotSallyAnymore";
 
 auto models = [model1, model2];
 
-models.update();
+models.updateModel();
 ```
 
 ### Delete
@@ -111,7 +111,7 @@ import models;
 auto model = new MyModel;
 model.id = 1;
 
-model.delete();
+model.deleteModel();
 ```
 
 ### Delete Many
@@ -128,5 +128,5 @@ model2.id = 2;
 
 auto models = [model1, model2];
 
-models.delete();
+models.deleteModel();
 ```
