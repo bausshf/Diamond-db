@@ -69,7 +69,7 @@ model2.name = "Sally";
 
 auto models = [model1, model2];
 
-models.insertModel();
+models.insertMany();
 ```
 
 ### Update
@@ -100,7 +100,7 @@ model2.name = "ThisIsNotSallyAnymore";
 
 auto models = [model1, model2];
 
-models.updateModel();
+models.updateMany();
 ```
 
 ### Delete
@@ -128,5 +128,5 @@ model2.id = 2;
 
 auto models = [model1, model2];
 
-models.deleteModel();
+models.deleteMany();
 ```
