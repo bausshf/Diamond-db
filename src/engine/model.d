@@ -81,6 +81,10 @@ class DatabaseModel(string tableName) : IDatabaseModel
       {
         return _row.isNull(column) ? T.init : _row[column].get!T;
       }
+			else static if (is(T == bool))
+			{
+				return cast(bool)_row[column].get!ubyte;
+			}
       else
       {
         return _row[column].get!T;
@@ -117,6 +121,7 @@ class DatabaseModel(string tableName) : IDatabaseModel
     enum readNullEnumFomat = "model.%s = retrieve!(%s, true, true);";
     enum readNullFomat = "model.%s = retrieve!(%s, true, false);";
     enum readEnumFomat = "model.%s = retrieve!(%s, false, true);";
+		enum readBoolFormat = "model.%s = retrieve!(%s);";
     enum readFomat = "model.%s = retrieve!(%s);";
 
     import models;

@@ -30,6 +30,8 @@ string generateInsert(T : IDatabaseModel)()
       static const sql = "INSERT INTO `%s` (%s) VALUES (%s)";
       auto params = getParams(%s);
 
+      size_t index;
+
       %s
 
       %s
@@ -94,18 +96,22 @@ string generateInsert(T : IDatabaseModel)()
 
         static if (hasEnum)
         {
-          paramsInserts ~= "params[{{index}}] = cast(string)model.{{fieldName}};";
+          paramsInserts ~= "params[index++] = cast(string)model.{{fieldName}};";
         }
         else static if (hasTimestamp)
         {
           paramsInserts ~= `
            model.timestamp = Clock.currTime().asDateTime();
-           params[{{index}}] = model.timestamp;
+           params[index++] = model.timestamp;
           `;
+        }
+        else static if (is(typeof({{fullName}}) == bool))
+        {
+          paramsInserts ~= "params[index++] = cast(ubyte)model.{{fieldName}};";
         }
         else
         {
-          paramsInserts ~= "params[{{index}}] = model.{{fieldName}};";
+          paramsInserts ~= "params[index++] = model.{{fieldName}};";
         }
       }
     }});

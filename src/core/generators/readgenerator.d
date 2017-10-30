@@ -47,6 +47,10 @@ string generateRead(T : IDatabaseModel)()
       {
         mixin(readEnumFomat.format("{{fieldName}}", typeName));
       }
+      else static if (is(typeof({{fullName}}) == bool))
+      {
+        mixin(readBoolFormat.format("{{fieldName}}", typeName));
+      }
       else
       {
         mixin(readFomat.format("{{fieldName}}", typeName));

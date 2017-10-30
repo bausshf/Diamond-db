@@ -30,6 +30,8 @@ string generateUpdate(T : IDatabaseModel)()
       static const sql = "UPDATE `%s` SET %s WHERE `%s` = ?";
       auto params = getParams(%s);
 
+      size_t index;
+
       %s
 
       %s
@@ -91,18 +93,22 @@ string generateUpdate(T : IDatabaseModel)()
 
         static if (hasEnum)
         {
-          paramsUpdates ~= "params[{{index}}] = cast(string)model.{{fieldName}};";
+          paramsUpdates ~= "params[index++] = cast(string)model.{{fieldName}};";
         }
         else static if (hasTimestamp)
         {
           paramsUpdates ~= `
            model.timestamp = Clock.currTime().asDateTime();
-           params[{{index}}] = model.timestamp;
+           params[index++] = model.timestamp;
           `;
+        }
+        else static if (is(typeof({{fullName}}) == bool))
+        {
+          paramsUpdates ~= "params[index++] = cast(ubyte)model.{{fieldName}};";
         }
         else
         {
-          paramsUpdates ~= "params[{{index}}] = model.{{fieldName}};";
+          paramsUpdates ~= "params[index++] = model.{{fieldName}};";
         }
       }
     }});
